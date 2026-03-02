@@ -5,100 +5,162 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Ti...</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Caveat:wght@600&display=swap');
         
         body {
             margin: 0;
             padding: 0;
             font-family: 'Poppins', sans-serif;
-            /* Fondo elegante y moderno */
-            background: #0f2027; 
-            background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
-            color: white;
+            /* Degradado Rosa Pastel */
+            background: #ffdde1; 
+            background: linear-gradient(to right, #ffdde1, #ee9ca7);
+            /* Color de texto oscuro para que se lea bien sobre el rosa */
+            color: #553c41; 
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
             text-align: center;
+            overflow-x: hidden;
         }
 
-        /* Efecto de cristal translúcido (Glassmorphism) */
+        /* Efecto de cristal blanco esmerilado */
         .container {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             padding: 50px 40px;
             border-radius: 20px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(238, 156, 167, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.6);
             max-width: 90%;
             width: 450px;
-            transition: all 1s ease-in-out;
         }
 
-        h1 { 
-            font-size: 2.2em; 
-            margin-bottom: 10px; 
-            letter-spacing: 2px;
-        }
+        h1 { font-size: 2.2em; margin-bottom: 10px; letter-spacing: 2px; color: #d86c7a; }
+        p { font-size: 1.1em; font-weight: 400; color: #553c41; }
+
+        .timer { display: flex; justify-content: center; gap: 15px; margin-top: 40px; }
         
-        p { 
-            font-size: 1.1em; 
-            font-weight: 300; 
-            color: #d1d1d1;
+        .time-box { 
+            background: rgba(255, 255, 255, 0.6); 
+            padding: 15px 10px; 
+            border-radius: 12px; 
+            min-width: 70px; 
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            color: #d86c7a;
         }
-
-        /* Estilos del reloj */
-        .timer {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 40px;
-        }
-
-        .time-box {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px 10px;
-            border-radius: 12px;
-            min-width: 70px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .time-box span {
-            display: block;
-            font-size: 2.5em;
-            font-weight: 600;
-        }
-
-        .time-box div {
-            font-size: 0.75em;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 5px;
-        }
-
-        /* Ocultar el contenido principal al inicio */
-        #main-content { 
-            display: none; 
-        }
+        .time-box span { display: block; font-size: 2.5em; font-weight: 600; }
+        .time-box div { font-size: 0.75em; text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; color: #885053; }
 
         .btn {
-            background: #ffffff;
-            color: #0f2027;
-            border: none;
+            background: #d86c7a; 
+            color: #ffffff; 
+            border: none; 
             padding: 12px 30px;
-            font-size: 1.1em;
-            border-radius: 30px;
-            cursor: pointer;
+            font-size: 1.1em; 
+            border-radius: 30px; 
+            cursor: pointer; 
             font-weight: 600;
-            margin-top: 30px;
-            transition: transform 0.3s;
+            margin-top: 30px; 
+            transition: transform 0.3s, background 0.3s;
+            box-shadow: 0 4px 15px rgba(216, 108, 122, 0.4);
+        }
+        .btn:hover { 
+            transform: scale(1.05); 
+            background: #c75b69;
         }
 
-        .btn:hover {
-            transform: scale(1.05);
+        /* --- ESTILOS DE LA GALERÍA --- */
+        #gallery-section {
+            display: none; 
+            width: 100%;
+            max-width: 1000px;
+            padding: 40px 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
         }
+
+        .polaroid {
+            background-color: transparent;
+            width: 250px;
+            height: 300px;
+            perspective: 1000px; 
+            cursor: pointer;
+        }
+
+        .polaroid-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .polaroid.flipped .polaroid-inner {
+            transform: rotateY(180deg);
+        }
+
+        .polaroid-front, .polaroid-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(216, 108, 122, 0.2);
+        }
+
+        .polaroid-front {
+            background-color: white;
+            padding: 15px 15px 40px 15px;
+            box-sizing: border-box;
+            color: #553c41;
+        }
+
+        .polaroid-front img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .polaroid-front h3 {
+            font-family: 'Caveat', cursive; 
+            font-size: 1.6em;
+            margin-top: 10px;
+            color: #d86c7a;
+        }
+
+        .polaroid-back {
+            /* Fondo rosa pastel con patrón de plano arquitectónico */
+            background-color: #f4c2c2; 
+            background-image: linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: #553c41;
+            transform: rotateY(180deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+            border: 4px solid white;
+        }
+
+        .polaroid-back p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95em;
+            font-weight: 600;
+            line-height: 1.5;
+            background: rgba(255, 255, 255, 0.5); /* Resalta el texto un poco sobre las líneas */
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        #main-content { display: none; }
     </style>
 </head>
 <body>
@@ -106,7 +168,6 @@
     <div id="countdown-screen" class="container">
         <h1>Paciencia...</h1>
         <p>El proyecto de tus 19 años está casi listo para desvelarse.</p>
-        
         <div class="timer">
             <div class="time-box"><span id="days">00</span><div>Días</div></div>
             <div class="time-box"><span id="hours">00</span><div>Horas</div></div>
@@ -118,42 +179,80 @@
     <div id="main-content" class="container">
         <h1>¡Felices 19 Años!</h1>
         <p>Por fin llegó el día. Eres el pilar más importante y quería construir un detalle a tu altura.</p>
-        <button class="btn" onclick="abrirCarta()">Desbloquear Sorpresa</button>
+        <button class="btn" onclick="abrirGaleria()">Desbloquear Sorpresa</button>
+    </div>
+
+    <div id="gallery-section">
+        
+        <div class="polaroid" onclick="girarFoto(this)">
+            <div class="polaroid-inner">
+                <div class="polaroid-front">
+                    <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=400&auto=format&fit=crop" alt="Recuerdo 1">
+                    <h3>Nuestro inicio</h3>
+                </div>
+                <div class="polaroid-back">
+                    <p>Aquí puedes escribir un mensaje romántico sobre cómo se conocieron.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="polaroid" onclick="girarFoto(this)">
+            <div class="polaroid-inner">
+                <div class="polaroid-front">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=400&auto=format&fit=crop" alt="Recuerdo 2">
+                    <h3>Momentos únicos</h3>
+                </div>
+                <div class="polaroid-back">
+                    <p>Recuerda poner fotos de sus mejores aventuras juntos aquí.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="polaroid" onclick="girarFoto(this)">
+            <div class="polaroid-inner">
+                <div class="polaroid-front">
+                    <img src="https://images.unsplash.com/photo-1494774157365-9e04c6720e47?q=80&w=400&auto=format&fit=crop" alt="Recuerdo 3">
+                    <h3>¡Felices 19!</h3>
+                </div>
+                <div class="polaroid-back">
+                    <p>Eres increíble. Que este nuevo año esté lleno de proyectos hermosos juntos. Te amo.</p>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script>
-        // Configurado para el 3 de Marzo de 2026 a las 00:00:00 hrs
         const countDownDate = new Date("March 3, 2026 00:00:00").getTime();
 
         const x = setInterval(function() {
             const now = new Date().getTime();
             const distance = countDownDate - now;
 
-            // Cálculos de tiempo
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Inyectar los números en el HTML (añadiendo un 0 si es menor a 10)
             document.getElementById("days").innerText = days < 10 ? "0" + days : days;
             document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
             document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
             document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
 
-            // Condición: Si la fecha ya llegó o pasó
             if (distance < 0) {
                 clearInterval(x);
-                // Ocultar la pantalla de tiempo y mostrar el contenido
                 document.getElementById("countdown-screen").style.display = "none";
                 document.getElementById("main-content").style.display = "block";
             }
         }, 1000);
 
-        // Acción al presionar el botón de la sorpresa
-        function abrirCarta() {
-            // Aquí luego le podemos agregar que el botón la lleve a una galería de fotos o a una carta interactiva
-            alert("¡Te amo! Aquí irá el resto de la sorpresa...");
+        function abrirGaleria() {
+            document.getElementById("main-content").style.display = "none";
+            document.getElementById("gallery-section").style.display = "flex";
+        }
+
+        function girarFoto(elemento) {
+            elemento.classList.toggle("flipped");
         }
     </script>
 </body>
