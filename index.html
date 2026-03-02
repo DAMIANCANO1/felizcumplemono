@@ -21,26 +21,24 @@
             min-height: 100vh;
             text-align: center;
             overflow-x: hidden;
-            position: relative; /* Para el corazón de fondo */
         }
 
-        /* --- CORAZÓN ANIMADO DE FONDO --- */
-        body::before {
-            content: "❤"; /* Símbolo de corazón */
+        /* --- NUEVO CORAZÓN ANIMADO --- */
+        .heart-bg {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             font-size: 150vmin; /* Extremadamente grande */
-            color: rgba(216, 108, 122, 0.1); /* Rosa muy tenue y translúcido */
-            z-index: -1; /* Detrás de todo */
-            animation: latir 3s infinite ease-in-out; /* Animación de latido */
+            color: rgba(216, 108, 122, 0.15); /* Rosa translúcido un poco más visible */
+            z-index: 0; /* Justo detrás de las fotos, pero encima del fondo */
+            animation: latir 3s infinite ease-in-out; 
+            pointer-events: none; /* CRUCIAL: Evita que el corazón bloquee los clics a las fotos */
         }
 
-        /* Animación para que el corazón se mueva suavemente */
         @keyframes latir {
             0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.1; }
-            50% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.15; }
+            50% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.2; }
         }
 
         /* Efecto de cristal blanco esmerilado */
@@ -54,8 +52,8 @@
             border: 2px solid rgba(255, 255, 255, 0.6);
             max-width: 90%;
             width: 450px;
-            position: relative; /* Para estar sobre el corazón de fondo */
-            z-index: 1;
+            position: relative; 
+            z-index: 1; /* Asegura que esté por encima del corazón */
         }
 
         h1 { font-size: 2.2em; margin-bottom: 10px; letter-spacing: 2px; color: #d86c7a; }
@@ -102,7 +100,7 @@
             justify-content: center;
             gap: 30px;
             position: relative;
-            z-index: 1;
+            z-index: 1; /* Asegura que las fotos estén por encima del corazón */
         }
 
         .polaroid {
@@ -188,6 +186,8 @@
 </head>
 <body>
 
+    <div class="heart-bg">❤</div>
+
     <div id="countdown-screen" class="container">
         <h1>Paciencia...</h1>
         <p>El proyecto de tus 19 años está casi listo para desvelarse.</p>
@@ -271,6 +271,7 @@
 
     <script>
         // Fecha final: 3 de Marzo de 2026
+        // CÁMBIALA TEMPORALMENTE A "March 1, 2026 00:00:00" PARA VER LAS FOTOS SIN ESPERAR
         const countDownDate = new Date("March 1, 2026 00:00:00").getTime();
 
         const x = setInterval(function() {
