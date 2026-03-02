@@ -14,7 +14,6 @@
             /* Degradado Rosa Pastel */
             background: #ffdde1; 
             background: linear-gradient(to right, #ffdde1, #ee9ca7);
-            /* Color de texto oscuro para que se lea bien sobre el rosa */
             color: #553c41; 
             display: flex;
             justify-content: center;
@@ -75,7 +74,7 @@
         #gallery-section {
             display: none; 
             width: 100%;
-            max-width: 1000px;
+            max-width: 1200px;
             padding: 40px 20px;
             flex-wrap: wrap;
             justify-content: center;
@@ -125,6 +124,7 @@
             height: 200px;
             object-fit: cover;
             border-radius: 4px;
+            background-color: #f0f0f0; /* Color de fondo por si la foto tarda en cargar */
         }
 
         .polaroid-front h3 {
@@ -155,7 +155,7 @@
             font-size: 0.95em;
             font-weight: 600;
             line-height: 1.5;
-            background: rgba(255, 255, 255, 0.5); /* Resalta el texto un poco sobre las líneas */
+            background: rgba(255, 255, 255, 0.5); 
             padding: 10px;
             border-radius: 8px;
         }
@@ -167,7 +167,7 @@
 
     <div id="countdown-screen" class="container">
         <h1>Paciencia...</h1>
-        <p>El proyecto de tus 19 años está casi listo .</p>
+        <p>El proyecto de tus 19 años está casi listo para desvelarse.</p>
         <div class="timer">
             <div class="time-box"><span id="days">00</span><div>Días</div></div>
             <div class="time-box"><span id="hours">00</span><div>Horas</div></div>
@@ -178,7 +178,7 @@
 
     <div id="main-content" class="container">
         <h1>¡Felices 19 Años!</h1>
-        <p>Por fin llegó el día. Eres muy importante y quería construir un detalle muy bonito.</p>
+        <p>Por fin llegó el día. Eres el pilar más importante y quería construir un detalle a tu altura.</p>
         <button class="btn" onclick="abrirGaleria()">Desbloquear Sorpresa</button>
     </div>
 
@@ -187,11 +187,11 @@
         <div class="polaroid" onclick="girarFoto(this)">
             <div class="polaroid-inner">
                 <div class="polaroid-front">
-                    <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=400&auto=format&fit=crop" alt="Recuerdo 1">
+                    <img src="FOTO1.jpg" alt="Recuerdo 1">
                     <h3>Nuestro inicio</h3>
                 </div>
                 <div class="polaroid-back">
-                    <p>Siempre he pensado en que tu eres el amor de mi vida desde que te conoci hasta siempre.</p>
+                    <p>Aquí puedes escribir un mensaje romántico sobre cómo se conocieron.</p>
                 </div>
             </div>
         </div>
@@ -199,7 +199,7 @@
         <div class="polaroid" onclick="girarFoto(this)">
             <div class="polaroid-inner">
                 <div class="polaroid-front">
-                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=400&auto=format&fit=crop" alt="Recuerdo 2">
+                    <img src="FOTO2.jpg" alt="Recuerdo 2">
                     <h3>Momentos únicos</h3>
                 </div>
                 <div class="polaroid-back">
@@ -211,7 +211,31 @@
         <div class="polaroid" onclick="girarFoto(this)">
             <div class="polaroid-inner">
                 <div class="polaroid-front">
-                    <img src="https://images.unsplash.com/photo-1494774157365-9e04c6720e47?q=80&w=400&auto=format&fit=crop" alt="Recuerdo 3">
+                    <img src="FOTO3.jpg" alt="Recuerdo 3">
+                    <h3>A tu lado</h3>
+                </div>
+                <div class="polaroid-back">
+                    <p>Me encanta compartir mi tiempo contigo. Cada día es especial.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="polaroid" onclick="girarFoto(this)">
+            <div class="polaroid-inner">
+                <div class="polaroid-front">
+                    <img src="FOTO4.jpg" alt="Recuerdo 4">
+                    <h3>Más aventuras</h3>
+                </div>
+                <div class="polaroid-back">
+                    <p>No puedo esperar para construir más recuerdos increíbles juntos.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="polaroid" onclick="girarFoto(this)">
+            <div class="polaroid-inner">
+                <div class="polaroid-front">
+                    <img src="FOTO5.jpg" alt="Recuerdo 5">
                     <h3>¡Felices 19!</h3>
                 </div>
                 <div class="polaroid-back">
