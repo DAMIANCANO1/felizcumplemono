@@ -11,7 +11,7 @@
             margin: 0;
             padding: 0;
             font-family: 'Poppins', sans-serif;
-            /* Degradado Rosa Pastel */
+            /* Degradado Rosa Pastel de base */
             background: #ffdde1; 
             background: linear-gradient(to right, #ffdde1, #ee9ca7);
             color: #553c41; 
@@ -21,6 +21,26 @@
             min-height: 100vh;
             text-align: center;
             overflow-x: hidden;
+            position: relative; /* Para el corazón de fondo */
+        }
+
+        /* --- CORAZÓN ANIMADO DE FONDO --- */
+        body::before {
+            content: "❤"; /* Símbolo de corazón */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 150vmin; /* Extremadamente grande */
+            color: rgba(216, 108, 122, 0.1); /* Rosa muy tenue y translúcido */
+            z-index: -1; /* Detrás de todo */
+            animation: latir 3s infinite ease-in-out; /* Animación de latido */
+        }
+
+        /* Animación para que el corazón se mueva suavemente */
+        @keyframes latir {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.1; }
+            50% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.15; }
         }
 
         /* Efecto de cristal blanco esmerilado */
@@ -34,6 +54,8 @@
             border: 2px solid rgba(255, 255, 255, 0.6);
             max-width: 90%;
             width: 450px;
+            position: relative; /* Para estar sobre el corazón de fondo */
+            z-index: 1;
         }
 
         h1 { font-size: 2.2em; margin-bottom: 10px; letter-spacing: 2px; color: #d86c7a; }
@@ -79,6 +101,8 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 30px;
+            position: relative;
+            z-index: 1;
         }
 
         .polaroid {
@@ -124,7 +148,7 @@
             height: 200px;
             object-fit: cover;
             border-radius: 4px;
-            background-color: #f0f0f0; /* Color de fondo por si la foto tarda en cargar */
+            background-color: #f0f0f0; 
         }
 
         .polaroid-front h3 {
@@ -135,7 +159,6 @@
         }
 
         .polaroid-back {
-            /* Fondo rosa pastel con patrón de plano arquitectónico */
             background-color: #f4c2c2; 
             background-image: linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px),
             linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px);
@@ -191,7 +214,7 @@
                     <h3>Nuestro inicio</h3>
                 </div>
                 <div class="polaroid-back">
-                    <p>Aquí puedes escribir un mensaje romántico sobre cómo se conocieron.</p>
+                    <p>Escribe tu mensaje 1 aquí...</p>
                 </div>
             </div>
         </div>
@@ -203,7 +226,7 @@
                     <h3>Momentos únicos</h3>
                 </div>
                 <div class="polaroid-back">
-                    <p>Recuerda poner fotos de sus mejores aventuras juntos aquí.</p>
+                    <p>Escribe tu mensaje 2 aquí...</p>
                 </div>
             </div>
         </div>
@@ -215,7 +238,7 @@
                     <h3>A tu lado</h3>
                 </div>
                 <div class="polaroid-back">
-                    <p>Me encanta compartir mi tiempo contigo. Cada día es especial.</p>
+                    <p>Escribe tu mensaje 3 aquí...</p>
                 </div>
             </div>
         </div>
@@ -227,7 +250,7 @@
                     <h3>Más aventuras</h3>
                 </div>
                 <div class="polaroid-back">
-                    <p>No puedo esperar para construir más recuerdos increíbles juntos.</p>
+                    <p>Escribe tu mensaje 4 aquí...</p>
                 </div>
             </div>
         </div>
@@ -239,7 +262,7 @@
                     <h3>¡Felices 19!</h3>
                 </div>
                 <div class="polaroid-back">
-                    <p>Eres increíble. Que este nuevo año esté lleno de proyectos hermosos juntos. Te amo.</p>
+                    <p>Escribe tu mensaje 5 aquí... ¡Te amo!</p>
                 </div>
             </div>
         </div>
@@ -247,6 +270,7 @@
     </div>
 
     <script>
+        // Fecha final: 3 de Marzo de 2026
         const countDownDate = new Date("March 1, 2026 00:00:00").getTime();
 
         const x = setInterval(function() {
