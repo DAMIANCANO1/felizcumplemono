@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Ti...</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            /* Fondo elegante y moderno */
+            background: #0f2027; 
+            background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* Efecto de cristal translúcido (Glassmorphism) */
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 50px 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 90%;
+            width: 450px;
+            transition: all 1s ease-in-out;
+        }
+
+        h1 { 
+            font-size: 2.2em; 
+            margin-bottom: 10px; 
+            letter-spacing: 2px;
+        }
+        
+        p { 
+            font-size: 1.1em; 
+            font-weight: 300; 
+            color: #d1d1d1;
+        }
+
+        /* Estilos del reloj */
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .time-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 10px;
+            border-radius: 12px;
+            min-width: 70px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .time-box span {
+            display: block;
+            font-size: 2.5em;
+            font-weight: 600;
+        }
+
+        .time-box div {
+            font-size: 0.75em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 5px;
+        }
+
+        /* Ocultar el contenido principal al inicio */
+        #main-content { 
+            display: none; 
+        }
+
+        .btn {
+            background: #ffffff;
+            color: #0f2027;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 30px;
+            transition: transform 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="countdown-screen" class="container">
+        <h1>Paciencia...</h1>
+        <p>El proyecto de tus 19 años está casi listo para desvelarse.</p>
+        
+        <div class="timer">
+            <div class="time-box"><span id="days">00</span><div>Días</div></div>
+            <div class="time-box"><span id="hours">00</span><div>Horas</div></div>
+            <div class="time-box"><span id="minutes">00</span><div>Min</div></div>
+            <div class="time-box"><span id="seconds">00</span><div>Seg</div></div>
+        </div>
+    </div>
+
+    <div id="main-content" class="container">
+        <h1>¡Felices 19 Años!</h1>
+        <p>Por fin llegó el día. Eres el pilar más importante y quería construir un detalle a tu altura.</p>
+        <button class="btn" onclick="abrirCarta()">Desbloquear Sorpresa</button>
+    </div>
+
+    <script>
+        // Configurado para el 3 de Marzo de 2026 a las 00:00:00 hrs
+        const countDownDate = new Date("March 3, 2026 00:00:00").getTime();
+
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            // Cálculos de tiempo
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Inyectar los números en el HTML (añadiendo un 0 si es menor a 10)
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+            // Condición: Si la fecha ya llegó o pasó
+            if (distance < 0) {
+                clearInterval(x);
+                // Ocultar la pantalla de tiempo y mostrar el contenido
+                document.getElementById("countdown-screen").style.display = "none";
+                document.getElementById("main-content").style.display = "block";
+            }
+        }, 1000);
+
+        // Acción al presionar el botón de la sorpresa
+        function abrirCarta() {
+            // Aquí luego le podemos agregar que el botón la lleve a una galería de fotos o a una carta interactiva
+            alert("¡Te amo! Aquí irá el resto de la sorpresa...");
+        }
+    </script>
+</body>
+</html>
